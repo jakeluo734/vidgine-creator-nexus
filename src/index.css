@@ -43,6 +43,11 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     
+    /* Radius */
+    --radius: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
     --gradient-secondary: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--primary)));
@@ -56,21 +61,6 @@
     --shadow-xl: 0 20px 25px -5px hsl(var(--foreground) / 0.1), 0 8px 10px -6px hsl(var(--foreground) / 0.1);
     --shadow-glow: 0 0 40px hsl(var(--primary) / 0.3);
     --shadow-accent: 0 10px 30px -10px hsl(var(--accent) / 0.4);
-    
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-fast: all 0.15s ease-out;
-    --transition-slow: all 0.5s ease-out;
-    
-    /* Spacing */
-    --container-padding: 1rem;
-    --section-padding: 4rem 0;
-    --header-height: 4rem;
-    
-    /* Radius */
-    --radius: 0.5rem;
-    --radius-lg: 0.75rem;
-    --radius-xl: 1rem;
   }
 
   .dark {
@@ -101,6 +91,7 @@
   * {
     @apply border-border;
   }
+  
   body {
     @apply bg-background text-foreground font-inter;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
@@ -148,15 +139,6 @@
     box-shadow: var(--shadow-accent);
   }
   
-  /* Animations */
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  .animate-glow {
-    animation: glow 2s ease-in-out infinite alternate;
-  }
-  
   /* Interactive Elements */
   .premium-card {
     @apply bg-card border border-border rounded-xl p-6 transition-all duration-300;
@@ -192,12 +174,6 @@
     @apply relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0;
     @apply after:bg-primary after:transition-all after:duration-300;
     @apply hover:after:w-full;
-  }
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
   }
 }
 
