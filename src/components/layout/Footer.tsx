@@ -1,0 +1,124 @@
+import { Link } from "react-router-dom";
+
+const Footer = () => {
+  return (
+    <footer className="bg-muted border-t">
+      <div className="container py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Brand */}
+          <div className="space-y-4">
+            <Link to="/" className="flex items-center space-x-2">
+              <div className="h-8 w-8 rounded-lg bg-gradient-primary flex items-center justify-center">
+                <span className="text-white font-bold text-lg">V</span>
+              </div>
+              <span className="font-jakarta font-bold text-xl">Vidgine</span>
+            </Link>
+            <p className="text-sm text-muted-foreground">
+              Connecting businesses with elite AI video creators for premium video production.
+            </p>
+          </div>
+
+          {/* Platform */}
+          <div className="space-y-4">
+            <h3 className="font-semibold">Platform</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>
+                <Link to="/creators" className="hover:text-foreground transition-colors">
+                  Find Creators
+                </Link>
+              </li>
+              <li>
+                <Link to="/for-business" className="hover:text-foreground transition-colors">
+                  For Business
+                </Link>
+              </li>
+              <li>
+                <Link to="/pricing" className="hover:text-foreground transition-colors">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link to="/dashboard" className="hover:text-foreground transition-colors">
+                  Dashboard
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div className="space-y-4">
+            <h3 className="font-semibold">Resources</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>
+                <Link to="/resources" className="hover:text-foreground transition-colors">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Help Center
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  API Docs
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div className="space-y-4">
+            <h3 className="font-semibold">Legal</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Terms of Service
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  Cookie Policy
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-foreground transition-colors">
+                  GDPR
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="border-t mt-8 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <p className="text-sm text-muted-foreground">
+            © 2024 Vidgine. All rights reserved.
+          </p>
+          <div className="flex space-x-6 text-sm text-muted-foreground">
+            <a href="#" className="hover:text-foreground transition-colors">
+              Twitter
+            </a>
+            <a href="#" className="hover:text-foreground transition-colors">
+              LinkedIn
+            </a>
+            <a href="#" className="hover:text-foreground transition-colors">
+              YouTube
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

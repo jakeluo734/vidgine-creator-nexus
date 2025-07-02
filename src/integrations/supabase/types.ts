@@ -9,7 +9,192 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      business_users: {
+        Row: {
+          company_name: string
+          contact_name: string
+          created_at: string
+          email: string
+          id: string
+          subscription_active: boolean | null
+          subscription_expires_at: string | null
+          subscription_tier: Database["public"]["Enums"]["subscription_tier"]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          company_name: string
+          contact_name: string
+          created_at?: string
+          email: string
+          id?: string
+          subscription_active?: boolean | null
+          subscription_expires_at?: string | null
+          subscription_tier?: Database["public"]["Enums"]["subscription_tier"]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          company_name?: string
+          contact_name?: string
+          created_at?: string
+          email?: string
+          id?: string
+          subscription_active?: boolean | null
+          subscription_expires_at?: string | null
+          subscription_tier?: Database["public"]["Enums"]["subscription_tier"]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      creator_views: {
+        Row: {
+          business_user_id: string | null
+          creator_id: string
+          id: string
+          viewed_at: string
+          viewer_type: string
+        }
+        Insert: {
+          business_user_id?: string | null
+          creator_id: string
+          id?: string
+          viewed_at?: string
+          viewer_type: string
+        }
+        Update: {
+          business_user_id?: string | null
+          creator_id?: string
+          id?: string
+          viewed_at?: string
+          viewer_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "creator_views_business_user_id_fkey"
+            columns: ["business_user_id"]
+            isOneToOne: false
+            referencedRelation: "business_users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "creator_views_creator_id_fkey"
+            columns: ["creator_id"]
+            isOneToOne: false
+            referencedRelation: "creators"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      creators: {
+        Row: {
+          bio: string
+          cover_image_url: string | null
+          created_at: string
+          demo_video_url: string | null
+          featured: boolean | null
+          id: string
+          location: string | null
+          name: string
+          portfolio_url: string | null
+          profile_image_url: string | null
+          rate_range_max: number | null
+          rate_range_min: number | null
+          slug: string
+          specialties: Database["public"]["Enums"]["creator_specialty"][]
+          title: string
+          tools_used: string[] | null
+          updated_at: string
+          years_experience: number | null
+        }
+        Insert: {
+          bio: string
+          cover_image_url?: string | null
+          created_at?: string
+          demo_video_url?: string | null
+          featured?: boolean | null
+          id?: string
+          location?: string | null
+          name: string
+          portfolio_url?: string | null
+          profile_image_url?: string | null
+          rate_range_max?: number | null
+          rate_range_min?: number | null
+          slug: string
+          specialties?: Database["public"]["Enums"]["creator_specialty"][]
+          title: string
+          tools_used?: string[] | null
+          updated_at?: string
+          years_experience?: number | null
+        }
+        Update: {
+          bio?: string
+          cover_image_url?: string | null
+          created_at?: string
+          demo_video_url?: string | null
+          featured?: boolean | null
+          id?: string
+          location?: string | null
+          name?: string
+          portfolio_url?: string | null
+          profile_image_url?: string | null
+          rate_range_max?: number | null
+          rate_range_min?: number | null
+          slug?: string
+          specialties?: Database["public"]["Enums"]["creator_specialty"][]
+          title?: string
+          tools_used?: string[] | null
+          updated_at?: string
+          years_experience?: number | null
+        }
+        Relationships: []
+      }
+      resources: {
+        Row: {
+          author: string
+          content: string
+          created_at: string
+          excerpt: string
+          featured: boolean | null
+          featured_image_url: string | null
+          id: string
+          published: boolean | null
+          slug: string
+          tags: string[] | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author: string
+          content: string
+          created_at?: string
+          excerpt: string
+          featured?: boolean | null
+          featured_image_url?: string | null
+          id?: string
+          published?: boolean | null
+          slug: string
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author?: string
+          content?: string
+          created_at?: string
+          excerpt?: string
+          featured?: boolean | null
+          featured_image_url?: string | null
+          id?: string
+          published?: boolean | null
+          slug?: string
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -18,7 +203,16 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      creator_specialty:
+        | "explainer_videos"
+        | "product_demos"
+        | "social_media"
+        | "corporate_training"
+        | "marketing_campaigns"
+        | "educational_content"
+        | "testimonials"
+        | "animations"
+      subscription_tier: "free" | "basic" | "premium"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -133,6 +327,18 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      creator_specialty: [
+        "explainer_videos",
+        "product_demos",
+        "social_media",
+        "corporate_training",
+        "marketing_campaigns",
+        "educational_content",
+        "testimonials",
+        "animations",
+      ],
+      subscription_tier: ["free", "basic", "premium"],
+    },
   },
 } as const
