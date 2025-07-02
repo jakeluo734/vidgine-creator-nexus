@@ -89,7 +89,10 @@
 
 @layer base {
   * {
-    @apply border-border;
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: hsl(var(--border));
   }
   
   body {
@@ -141,8 +144,9 @@
   
   /* Interactive Elements */
   .premium-card {
-    @apply bg-card border border-border rounded-xl p-6 transition-all duration-300;
-    @apply hover:shadow-lg hover:border-primary/20 hover:-translate-y-1;
+    @apply bg-card rounded-xl p-6 transition-all duration-300;
+    @apply hover:shadow-lg hover:-translate-y-1;
+    border: 1px solid hsl(var(--border));
   }
   
   .premium-button {
