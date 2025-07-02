@@ -96,17 +96,37 @@
   }
   
   body {
-    @apply bg-background text-foreground font-inter;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Inter', 'system-ui', 'sans-serif';
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-jakarta font-semibold;
+    font-family: 'Plus Jakarta Sans', 'sans-serif';
+    font-weight: 600;
   }
   
   .container {
-    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
     max-width: 1200px;
+  }
+  
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
   }
 }
 
@@ -126,11 +146,15 @@
   
   /* Glass Effects */
   .glass {
-    @apply backdrop-blur-md bg-white/80 border border-white/20;
+    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
   
   .glass-dark {
-    @apply backdrop-blur-md bg-black/80 border border-white/10;
+    backdrop-filter: blur(12px);
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
   
   /* Premium Shadows */
@@ -144,16 +168,35 @@
   
   /* Interactive Elements */
   .premium-card {
-    @apply bg-card rounded-xl p-6 transition-all duration-300;
-    @apply hover:shadow-lg hover:-translate-y-1;
+    background-color: hsl(var(--card));
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid hsl(var(--border));
   }
   
+  .premium-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    transform: translateY(-0.25rem);
+  }
+  
   .premium-button {
-    @apply relative overflow-hidden transition-all duration-300;
-    @apply before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent;
-    @apply before:translate-x-[-100%] before:transition-transform before:duration-500;
-    @apply hover:before:translate-x-[100%];
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .premium-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .premium-button:hover::before {
+    transform: translateX(100%);
   }
   
   /* Typography */
