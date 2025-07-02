@@ -91,9 +91,7 @@
 @layer base {
   * {
     box-sizing: border-box;
-    border-width: 0;
-    border-style: solid;
-    border-color: hsl(var(--border));
+    border: 0 solid hsl(var(--border));
   }
   
   body {
@@ -202,26 +200,82 @@
   
   /* Typography */
   .heading-xl {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold font-jakarta tracking-tight;
+    font-size: 2.25rem;
+    font-weight: 700;
+    font-family: 'Plus Jakarta Sans', 'sans-serif';
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+  
+  @media (min-width: 768px) {
+    .heading-xl {
+      font-size: 3rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .heading-xl {
+      font-size: 3.75rem;
+    }
   }
   
   .heading-lg {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold font-jakarta tracking-tight;
+    font-size: 1.875rem;
+    font-weight: 700;
+    font-family: 'Plus Jakarta Sans', 'sans-serif';
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+  
+  @media (min-width: 768px) {
+    .heading-lg {
+      font-size: 2.25rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .heading-lg {
+      font-size: 3rem;
+    }
   }
   
   .heading-md {
-    @apply text-2xl md:text-3xl font-semibold font-jakarta;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: 'Plus Jakarta Sans', 'sans-serif';
+  }
+  
+  @media (min-width: 768px) {
+    .heading-md {
+      font-size: 1.875rem;
+    }
   }
   
   .text-gradient {
-    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+    background: linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
   }
   
   /* Link Animations */
   .link-underline {
-    @apply relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0;
-    @apply after:bg-primary after:transition-all after:duration-300;
-    @apply hover:after:w-full;
+    position: relative;
+  }
+  
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background-color: hsl(var(--primary));
+    transition: all 0.3s ease;
+  }
+  
+  .link-underline:hover::after {
+    width: 100%;
   }
 }
 
