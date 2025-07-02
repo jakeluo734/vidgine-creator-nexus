@@ -48,26 +48,26 @@ const Index = () => {
             </Badge>
             
             <h1 className="heading-xl text-balance">
-              Connect with Elite
-              <span className="text-gradient block">AI Video Creators</span>
+              Where AI Talent
+              <span className="text-gradient block">Meets Opportunity</span>
             </h1>
             
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-balance">
-              Access our curated directory of premium video creators specializing in AI-powered content. 
-              Find the perfect talent for your next video project.
+              Vidgine is an exclusive, vetted directory of the world's top AI video creators 
+              and a professional hub for the future of digital content.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button size="lg" asChild className="premium-button">
                 <Link to="/creators">
-                  Browse Creators
+                  Find Talent
                   <Search className="w-5 h-5 ml-2" />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <Link to="/for-business">
-                  <Play className="w-5 h-5 mr-2" />
-                  For Business
+                <Link to="#join-creators">
+                  <Users className="w-5 h-5 mr-2" />
+                  Join as Creator
                 </Link>
               </Button>
             </div>

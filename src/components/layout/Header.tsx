@@ -11,20 +11,21 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   const navItems = [
-    { name: "Home", href: "/" },
-    { name: "Find Creators", href: "/creators" },
+    { name: "Creators", href: "/creators" },
     { name: "Resources", href: "/resources" },
     { name: "For Business", href: "/for-business" },
     { name: "Pricing", href: "/pricing" },
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b glass supports-[backdrop-filter]:glass">
       <div className="container flex h-16 items-center justify-between">
-        {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
-          <div className="h-8 w-8 rounded-lg bg-gradient-primary flex items-center justify-center">
-            <span className="text-white font-bold text-lg">V</span>
+          <div className="h-8 w-8 rounded-lg bg-gradient-primary flex items-center justify-center relative">
+            <div className="absolute inset-0 bg-gradient-primary rounded-lg opacity-80"></div>
+            <svg className="w-5 h-5 text-white relative z-10" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
           </div>
           <span className="font-jakarta font-bold text-xl">Vidgine</span>
         </Link>
