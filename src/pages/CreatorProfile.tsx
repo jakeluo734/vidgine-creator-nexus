@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -26,20 +26,28 @@ interface Creator {
   profile_image_url: string;
   cover_image_url: string;
   created_at: string;
+  email?: string; // Add email to the interface
 }
 
 const CreatorProfile = () => {
   const { slug } = useParams<{ slug: string }>();
   const [creator, setCreator] = useState<Creator | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // New state for login status
 
   useEffect(() => {
+    const checkUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setIsLoggedIn(!!session);
+    };
+    checkUser();
+
     if (slug) {
       fetchCreator();
     }
-  }, [slug]);
+  }, [slug, fetchCreator]);
 
-  const fetchCreator = async () => {
+  const fetchCreator = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('creators')
@@ -62,7 +70,7 @@ const CreatorProfile = () => {
       // Track view
       await supabase.from('creator_views').insert({
         creator_id: data.id,
-        viewer_type: 'anonymous'
+        viewer_type: isLoggedIn ? 'authenticated' : 'anonymous' // Use isLoggedIn
       });
 
     } catch (error) {
@@ -70,7 +78,7 @@ const CreatorProfile = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [slug, isLoggedIn]); // Add isLoggedIn to dependencies
 
   const formatRate = (min: number, max: number) => {
     return `$${min.toLocaleString()} - $${max.toLocaleString()}`;
@@ -172,9 +180,15 @@ const CreatorProfile = () => {
                     </div>
                   </div>
                   <div className="flex gap-2">
-                    <Button asChild>
-                      <Link to="/signup">Contact Creator</Link>
-                    </Button>
+                    {isLoggedIn ? ( // Conditionally render Contact Creator button
+                      <Button asChild>
+                        <a href={`mailto:${creator.email || 'info@vidgine.com'}`}>Contact Creator</a>
+                      </Button>
+                    ) : (
+                      <Button asChild>
+                        <Link to="/signup">Contact Creator</Link>
+                      </Button>
+                    )}
                     {creator.portfolio_url && (
                       <Button variant="outline" asChild>
                         <a href={creator.portfolio_url} target="_blank" rel="noopener noreferrer">
@@ -208,17 +222,30 @@ const CreatorProfile = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                    <div className="text-center space-y-2">
-                      <Play className="w-12 h-12 mx-auto text-muted-foreground" />
-                      <p className="text-sm text-muted-foreground">
-                        Demo video available to subscribers
-                      </p>
-                      <Button size="sm" asChild>
-                        <Link to="/signup">Subscribe to View</Link>
-                      </Button>
+                  {isLoggedIn ? ( // Conditionally render demo video
+                    <div className="aspect-video bg-muted rounded-lg overflow-hidden">
+                      <iframe
+                        src={creator.demo_video_url}
+                        title="Creator Demo Video"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-write; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full h-full"
+                      ></iframe>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
+                      <div className="text-center space-y-2">
+                        <Play className="w-12 h-12 mx-auto text-muted-foreground" />
+                        <p className="text-sm text-muted-foreground">
+                          Demo video available to subscribers
+                        </p>
+                        <Button size="sm" asChild>
+                          <Link to="/signup">Subscribe to View</Link>
+                        </Button>
+                      </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             )}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -30,9 +30,9 @@ const ResourceArticle = () => {
     if (slug) {
       fetchResource();
     }
-  }, [slug]);
+  }, [slug, fetchResource]);
 
-  const fetchResource = async () => {
+  const fetchResource = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('resources')
@@ -57,7 +57,7 @@ const ResourceArticle = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [slug]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
