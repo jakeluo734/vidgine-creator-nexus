@@ -78,7 +78,7 @@ const Index = () => {
       {/* Dual Value Proposition */}
       <section className="py-20 bg-muted/50">
         <div className="container">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             {/* For Creators */}
             <div className="space-y-8">
               <div className="space-y-4">
@@ -234,7 +234,7 @@ const Index = () => {
             <Button size="lg" variant="secondary" asChild>
               <Link to="/creators">Browse Creators</Link>
             </Button>
-            <Button size="lg" variant="outline" asChild className="border-white text-white hover:bg-white hover:text-foreground">
+            <Button size="lg" variant="outline" asChild className="border-white text-foreground hover:bg-white hover:text-foreground">
               <Link to="/signup">Start Free Trial</Link>
             </Button>
           </div>

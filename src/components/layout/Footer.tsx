@@ -57,19 +57,14 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <Link to="/help-center" className="hover:text-foreground transition-colors">
                   Help Center
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
-                  API Docs
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <Link to="/contact" className="hover:text-foreground transition-colors">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -79,24 +74,24 @@ const Footer = () => {
             <h3 className="font-semibold">Legal</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <Link to="/privacy-policy" className="hover:text-foreground transition-colors">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <Link to="/terms-of-service" className="hover:text-foreground transition-colors">
                   Terms of Service
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <Link to="/cookie-policy" className="hover:text-foreground transition-colors">
                   Cookie Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <Link to="/gdpr" className="hover:text-foreground transition-colors">
                   GDPR
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -106,17 +101,7 @@ const Footer = () => {
           <p className="text-sm text-muted-foreground">
             © 2024 Vidgine. All rights reserved.
           </p>
-          <div className="flex space-x-6 text-sm text-muted-foreground">
-            <a href="#" className="hover:text-foreground transition-colors">
-              Twitter
-            </a>
-            <a href="#" className="hover:text-foreground transition-colors">
-              LinkedIn
-            </a>
-            <a href="#" className="hover:text-foreground transition-colors">
-              YouTube
-            </a>
-          </div>
+          
         </div>
       </div>
     </footer>
